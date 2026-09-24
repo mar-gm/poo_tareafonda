@@ -1,21 +1,61 @@
 package cl.dsy1102.fonda;
 
-/**
- * Punto de entrada de la Tarea Fiestas Patrias - Fonda San Belarmino.
- *
- * Revisa el enunciado en README.md. Debes crear, en este mismo paquete,
- * las clases del diagrama: Bebida, BebidaAlcoholica, BebidaSinAlcohol,
- * la interfaz ConsumoResponsable y la clase GestorFonda.
- */
+
 public class Main {
 
     public static void main(String[] args) {
-        // TODO 1: instanciar las cuatro bebidas con los datos del enunciado.
-        // TODO 2: marcar la bebida alcoholica 'Chicha' con la venta restringida.
-        // TODO 3: registrarlas todas en el gestor.
-        // TODO 4: solicitar las cuatro ventas indicadas en el enunciado.
-        // TODO 5: buscar por nombre "Chicha" y listar todas las bebidas.
+        GestorFonda gestorFonda = new GestorFonda();
 
-        System.out.println("Proyecto listo. Comienza por la clase Bebida.");
+        BebidaAlcoholica chichaAlcoholica = new BebidaAlcoholica("Chicha", 1000, 40, 12.0, false, true);
+
+        BebidaAlcoholica piscoSour = new BebidaAlcoholica("Pisco sour", 1000, 60, 95, true, true);
+
+
+        BebidaSinAlcohol chichaSinAlcohol = new BebidaSinAlcohol("Chicha", 1000, 60, 95);
+
+        BebidaSinAlcohol moteConHuesillo = new BebidaSinAlcohol("Mote con huesillo", 40, 50, 70);
+
+        chichaAlcoholica.restringirVenta();
+
+        gestorFonda.registrar(chichaAlcoholica);
+        gestorFonda.registrar(piscoSour);
+        gestorFonda.registrar(chichaSinAlcohol);
+        gestorFonda.registrar(moteConHuesillo);
+
+        System.out.println("BUSCAR POR NOMBRE");
+
+
+        for (Bebida bebida : gestorFonda.buscarPorNombre("Chicha")){
+            System.out.println(bebida.obtenerDetalle());
+            System.out.println("--");
+        }
+        System.out.println();
+        System.out.println("___________VENTAS_____________");
+
+        gestorFonda.vender("Pisco Sour", 2);
+        gestorFonda.vender("Pisco Sour", 5);
+        gestorFonda.vender("Chicha", 0);
+        gestorFonda.vender("Mote con Huesillo", 6);
+
+        System.out.println();
+
+
+        System.out.println("===========LISTADO DE BEBIDAS==============");
+        for (Bebida bebida : gestorFonda.obtenerTodas()) {
+            System.out.println(bebida);
+        }
+
+
+
+
+
+
+
+
+
     }
 }
+
+
+
+
